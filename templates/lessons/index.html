@@ -1,0 +1,34 @@
+{% extends "basic.html" %}
+
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.3/css/jquery.dataTables.css">    
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/questions.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1>Lessons</h1>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>
+    </tfoot>
+    <tbody>
+    {% for lesson in lesson_list %}
+        <tr>
+            <td><a href="/lessons/{{ lesson.id }}">{{ lesson.title }}</a></td>
+            <!-- <td>{{ lesson.creator }}</td> -->
+            <td>{{ lesson.date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h2>{{ question.question_title }}</h2>
+<div class="container">
+    {{ question.question_text|safe }}
+</div>
+<div class="container">
+    {% if not question.solution_id %}
+        <h4>No Solution Available</h4>
+    {% else %}
+        <a href="#" onclick="$('#solution').slideToggle();"><h4>Solution</h4></a>
+        <div id="solution" style="display:none">{{ question.solution.solution_text|safe }}</div>
+    {% endif %}
+</div>
+
+{% endblock %}

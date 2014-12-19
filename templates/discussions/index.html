@@ -1,0 +1,44 @@
+{% extends "basic.html" %}
+
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.3/css/jquery.dataTables.css">    
+<script type="text/javascripTt" charset="utf8" src="https://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/questions.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1>Discussions</h1>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Votes</th>
+        </tr>
+    </tfoot>
+    <tbody>
+    {% for discussion in discussion_list %}
+        <tr>
+            <td><a href="/discussions/{{ discussion.id }}">{{ discussion.title }}</a></td>
+            <td>{{ discussion.creator }}</td>
+            <td>{{ discussion.date }}</td>
+            <td>
+                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                {{ discussion.upvotes }}
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                {{ discussion.downvotes }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

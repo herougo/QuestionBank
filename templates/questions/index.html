@@ -1,0 +1,46 @@
+{% extends "basic.html" %}
+
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.3/css/jquery.dataTables.css">    
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/questions.js"></script>
+{% endblock %}
+
+{% block content %}
+<h1>Questions</h1>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Number</th>
+            <th>Subject</th>
+            <th>Difficulty</th>
+            <th>Source</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Question</th>
+            <th>Number</th>
+            <th>Subject</th>
+            <th>Difficulty</th>
+            <th>Source</th>
+        </tr>
+    </tfoot>
+    <tbody>
+    {% for question in question_list %}
+        <tr>
+            <td><a href="/questions/{{ question.id }}">{{ question.question_title }}</a></td>
+            <td>{{ question.id }}</td>
+            <td>{{ question.subject }}</td>
+            <td>{{ question.difficulty }}</td>
+            {% if not question.source_id %}
+                <td>No Source</td>
+            {% else %}
+                <td><a target ="_blank" href="https://{{ question.source.source_url }}">{{ question.source.source_name }}</a></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "basic.html" %}
+
+
+{% block scripts %}
+<link href="{{STATIC_URL}}css/discussions/thread.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<h4>{{ title }}</h4>
+</div>
+<div class="row">
+    <table>
+        <tbody>
+        {% for comment in comment_list %}
+            <tr>
+                <div class="row">
+                    <div class="col-md-2">
+                        {{ comment.creator.username }}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <p class="comment-text">
+                            {{ comment.comment_text }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="comment-date">
+                                {{ comment.date }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                        {{ comment.upvotes }}
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                        {{ comment.downvotes }}
+                    </div>
+                </div>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <textarea id="reply" rows="4" cols="110" onclick="$('#reply').select()">Reply</textarea>
+</div>
+<div class="row">
+    <button type="button">Submit</button>
+</div>
+
+{% endblock %}

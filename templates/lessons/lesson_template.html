@@ -1,0 +1,8 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h2>{{ lesson.title }}</h2>
+<div class="container">
+    {{ lesson.lesson_text|safe }}
+</div>
+{% endblock %}
